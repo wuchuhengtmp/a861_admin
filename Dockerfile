@@ -4,11 +4,13 @@ WORKDIR /opt/www
 
 COPY . /opt/www
 
-RUN yarn config set yarn-offline-mirror ~/npm-packages-offline-cache \
+RUN yarn config set yarn-offline-mirror /root/npm-packages-offline-cache \
     && yarn config set yarn-offline-mirror-pruning true \
-    && touch  .yarnrc \
     && rm -rf node_modules/ yarn.lock \
     && yarn install \
-    && rm /opt/www -rf 
+    && rm -rf /opt/www \
+    && mkdir -p /opt/www
+ 
+WORKDIR /opt/www
 
 EXPOSE 9527
