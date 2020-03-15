@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  hyperf:
+    build: .
+    image: node:13
+    restart: always
+    ports:
+      - "9527:9527"
+    volumes:
+      - ./:/opt/www/
+    privileged: true
+    command:
+      - /bin/sh
+      - -c
+      - |
+        cd /opt/www/
+        yarn config set -g registry https://registry.npm.taobao.org
+        yarn install
+        yarn run dev
