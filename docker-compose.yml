@@ -2,8 +2,8 @@ version: '3'
 
 services:
   hyperf:
-    build: .
-    image: node:13
+    # build: .
+    image: wuchuheng/a861_admin:cache
     restart: always
     ports:
       - "9527:9527"
@@ -14,7 +14,6 @@ services:
       - /bin/sh
       - -c
       - |
-        cd /opt/www/
         yarn config set -g registry https://registry.npm.taobao.org
         yarn install
         yarn run dev
